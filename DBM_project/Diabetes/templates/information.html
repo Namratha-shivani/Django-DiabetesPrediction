@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Information</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, sans-serif;
+        }
+
+        header {
+            background-color: darkslategrey;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            border-bottom: 5px solid silver;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+            justify-content: space-between;
+        }
+
+
+        .panel {
+            padding: 50px;
+            text-align: center;
+            background-color: lavender;
+            border-bottom: 1px solid silver;
+            max-width: 300px;
+            height: 500px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+            .panel img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .panel h2 {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .panel p {
+                font-size: 16px;
+                text-align: justify;
+                margin: 10px;
+            }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .pane2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            flex-basis: calc(33.33% - 40px);
+            max-width: 300px;
+            height: 400px;
+            background-color: lavender;
+        }
+
+            .pane2 h2 {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .pane2 p {
+                font-size: 16px;
+                text-align: justify;
+                margin: 10px;
+            }
+
+            .pane2 img {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+                display: block;
+                margin: 10px auto;
+                cursor: pointer;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                transition: transform .2s;
+            }
+
+        img:hover {
+            transform: scale(2);
+        }
+
+        #title-container {
+            text-align: center;
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        h1 {
+            background-color: darkslategrey;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            border-bottom: 5px solid silver;
+        }
+
+        .container3 {
+            background-color: lavender;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+
+        .pane3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            flex-basis: calc(33.33% - 40px);
+            max-width: 300px;
+            height: 550px;
+            background-color: lavender;
+        }
+
+            .pane3 h2 {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .pane3 p {
+                font-size: 16px;
+                text-align: justify;
+                margin: 10px;
+            }
+
+            .pane3 img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                display: block;
+                margin: 10px auto;
+                cursor: pointer;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                transition: transform .2s;
+            }
+
+        img:hover {
+            transform: scale(2);
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <header>  Diabetes Information </header>
+
+    <div class="container">
+        <hr>
+        <div class="panel">
+            <h2>What is Diabetes?</h2>
+            <img src="https://www.floridahealth.gov/_documents/newsroom/press-releases/2021/11/20211105-diabetes-article.png">
+            <p>Diabetes is a chronic disease that affects how your body processes blood sugar (glucose). It can cause serious health problems such as heart disease, kidney failure, blindness, and amputations.</p>
+        </div>
+
+        <div class="panel">
+            <h2> Diabetes Symptoms: </h2>
+            <img src="https://us.123rf.com/450wm/gaidezoui/gaidezoui2006/gaidezoui200600021/149496764-medical-infographics-symptoms-of-diabetes-vector-illustration.jpg?ver=6">
+
+        </div>
+
+        <div class="panel">
+            <h2> Diabetes Complication: </h2>
+
+            <img src="https://www.umassmed.edu/globalassets/diabetes-center-of-excellence-dcoe/images/diabetes-complications/">
+
+        </div>
+        <hr>
+
+        <div id="title-container">
+            <h1>Types of diabetes</h1>
+        </div>
+        <div class="container">
+            <hr>
+            <div class="pane2">
+
+                <h2> Type 1 Diabetes </h2>
+                <img src="https://familymedicineaustin.com/wp-content/uploads/2022/12/MicrosoftTeams-image-9.jpg">
+                <p>This is an autoimmune disease in which the body's immune system attacks and destroys the cells in the pancreas that produce insulin. It usually develops in children and young adults. </p>
+            </div>
+
+            <div class="pane2">
+                <h2>Type 2 diabetes</h2>
+                <img src="https://nursesrevisionuganda.com/wp-content/uploads/2023/01/PosterMaker_18012023_64407.jpg">
+                <p>This is the most common type of diabetes, accounting for 90-95% of cases. It occurs when the body becomes resistant to insulin or does not produce enough insulin to meet its needs. </p>
+            </div>
+
+            <div class="pane2">
+                <h2>Gestational diabetes</h2>
+                <img src="https://buzzrx.s3.amazonaws.com/d8dba0e6-5a0f-4b8e-8985-b0cb13c12ce4/HowtoMonitorDiabetesDuringPregnancy.png">
+                <p>This type of diabetes develops during pregnancy and usually goes away after the baby is born. However, women who develop gestational diabetes are at increased risk of developing type 2 diabetes later in life. </p>
+            </div>
+            <hr>
+
+
+            <div id="title-container">
+                <h1> Treatment and Management </h1>
+            </div>
+            <div class="container">
+
+                <h2> Treatment for diabetes typically involves a combination of lifestyle changes such as: </h2>
+                <div class="pane3">
+
+                    <h3> Diet </h3>
+                    <img src="https://i.etsystatic.com/13248206/r/il/4a478b/4605409979/il_570xN.4605409979_dzjj.jpg">
+
+                </div>
+
+
+                <div class="pane3">
+                    <h3>Excercise</h3>
+                    <img src="https://d2jx2rerrg6sh3.cloudfront.net/image-handler/picture/2021/11/10.1177_20420188211054686-fig1.jpg">
+                    <br>
+                </div>
+                <div class="pane3">
+                    <h3>Medication</h3>
+                    <img src="https://blog.dmrckenya.co.ke/wp-content/uploads/2021/12/Diabetes-medication.jpg">
+                    <br>
+                    Medication, such as insulin or oral medications can help regulate blood sugar levels.
+                    <br>
+                    Regular monitoring of blood sugar levels is also important to help prevent complications.
+                </div>
+
+            </div>
+
+</body>
+</html>

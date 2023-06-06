@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diabetes Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-photo/flat-lay-diabetes-concept-with-teaspoon-with-sugar_262730-169.jpg?size=626&ext=jpg&ga=GA1.1.625603479.1686011940&semt=ais");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: black;
+    }
+      
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); 
+        
+      }
+   {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+        background-color: white;
+        color: black;
+        padding: 5px;
+    }
+    
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    nav li {
+      display: inline;
+      font-size: 20px;
+    }
+    nav a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 10px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background-color: white;
+      color: black;
+    }
+    section {
+      padding: 20px;
+    }
+    p {
+        color: black;
+        text-align: right;
+font-size: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: black;
+        font-size: 60px;
+    }
+    h2 {
+        text-align: right;
+        color: black;
+    }
+      }
+  
+    </style>
+    <header>
+    <h1>Welcome!</h1>
+</header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="{% url 'information' %}">Diabetes Information</a></li>
+      <li><a href="{% url 'map' %}">Statistics</a></li>
+      <li><a href="{% url 'takeatest' %}">Take the test</a></li>
+    </ul>
+  </nav>
+  <section>
+    <h2>General Information</h2>
+    <p>This website provides information about diabetes.</p>
+    <p>Diabetes is a chronic condition that affects millions of people worldwide. </p>
+<p> It occurs when the body is unable to produce or use insulin properly.</p>
+<p> This can lead to high blood sugar levels and other health complications.</p>
+    <p>Take the test and find out if you are diabetic or prone to diabetes.</p>
+  </section>
+  <footer>
+    <p>&copy; 2023 Diapred Website</p>
+  </footer>
+</body>
+</html>

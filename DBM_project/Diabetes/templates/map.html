@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+  <link rel="stylesheet" type="text/css" href="https://github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+  <head>
+    <style>
+       h2 {
+      background-color: DarkSlateGrey; /* change this to your desired color */
+      padding: 10px; /* add some padding for better readability */
+      color: white;
+    }
+    </style>
+    <style>
+      .highcharts-figure3 {
+        position: absolute;
+        top: 2cm;
+        right: 2cm;
+      }
+    </style>
+    <h2>Diabetes Dashboard</h2>
+  </head>
+  <div id="container"style="height: 500px; width: 700px;float:left;">
+    <style>
+      #container {
+        margin: 0 auto;
+      }
+    </style>
+  </div>
+  
+  <figure class="highcharts-figure">
+    <div id="piechart" style="height: 500px; width: 600px;float:right;margin-top: 500px;"></div>
+    
+  </figure>
+  <figure class="highcharts-figure2">
+    <div id="pre_piechart" style="height: 500px; width: 600px;float:left;">
+    </div>
+
+  </figure>
+  <figure class="highcharts-figure3" >
+      <div id="scatter_plots" style= "height: 500px; width: 600px;float:right;margin-top:0px;">
+        
+      </div>
+    
+  </figure>  
+
+  <script>
+    (async () => {
+
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/custom/world.topo.json'
+    ).then(response => response.json());
+
+    Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+
+        // Prevent logarithmic errors in color calulcation
+        data.forEach(function (p) {
+            p.value = (p.value < 1 ? 1 : p.value);
+        });
+
+        // Initialize the chart
+        Highcharts.mapChart('container', {
+
+            chart: {
+                map: topology
+            },
+
+            title: {
+                text: 'Popuation affected with Diabetes in 2021'
+            },
+
+            legend: {
+                title: {
+                    text: 'Diabetes Population in 1000s',
+                    style: {
+                        color: ( // theme
+                            Highcharts.defaultOptions &&
+                            Highcharts.defaultOptions.legend &&
+                            Highcharts.defaultOptions.legend.title &&
+                            Highcharts.defaultOptions.legend.title.style &&
+                            Highcharts.defaultOptions.legend.title.style.color
+                        ) || 'black'
+                    }
+                }
+            },
+
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+
+            tooltip: {
+                backgroundColor: 'none',
+                borderWidth: 0,
+                shadow: false,
+                useHTML: true,
+                padding: 0,
+                pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
+                    '</span></span> {point.name}<br>' +
+                    '<span style="font-size:30px">{point.value}</span>',
+                positioner: function () {
+                    return { x: 0, y: 250 };
+                }
+            },
+
+            colorAxis: {
+                min: 1,
+                max: {{maxVal|safe}},
+                type: 'logarithmic'
+                
+            },
+
+            series: [{
+                data: {{dataForMapGraph|safe}},
+                joinBy: ['iso-a3', 'code3'],
+                name: 'Population infected',
+                states: {
+                    hover: {
+                        color: '#a4edba'
+                    }
+                }
+            }]
+        });
+    });
+
+})();
+  </script>
+  <script>
+    var colors = Highcharts.getOptions().colors,
+    categories = [
+        '70+ yrs',
+        '51-70 yrs',
+        '31-50 yrs',
+        '16-30 yrs'
+    ],
+    data = [
+        {
+            y: 25.08,
+            color: 'tomato',
+            drilldown: {
+                name: '70+ yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    0.643,
+                    4.18,
+                    20.257
+                    
+                ]
+            }
+        },
+        {
+            y: 51.768,
+            color: 'orange',
+            drilldown: {
+                name: '51-70 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    2.57,
+                    10.28,
+                    34.72
+                ]
+            }
+        },
+        {
+            y: 20.25,
+            color: 'MediumSeaGreen',
+            drilldown: {
+                name: '31-50 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    0.32,
+                    7.39,
+                    10.61
+                ]
+            }
+        },
+        {
+            y: 2.89,
+            color: 'lightblue',
+            drilldown: {
+                name: '16-30 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    0,
+                    1.28,
+                    1.28
+                ]
+            }
+        }
+    ],
+    browserData = [],
+    versionsData = [],
+    i,
+    j,
+    dataLen = data.length,
+    drillDataLen,
+    brightness;
+
+
+// Build the data arrays
+for (i = 0; i < dataLen; i += 1) {
+
+    // add browser data
+    browserData.push({
+        name: categories[i],
+        y: data[i].y,
+        color: data[i].color
+    });
+
+    // add version data
+    drillDataLen = data[i].drilldown.data.length;
+    for (j = 0; j < drillDataLen; j += 1) {
+        brightness = 0.2 - (j / drillDataLen) / 5;
+        versionsData.push({
+            name: data[i].drilldown.categories[j],
+            y: data[i].drilldown.data[j],
+            color: Highcharts.color(data[i].color).brighten(brightness).get()
+        });
+    }
+    
+}
+
+// Create the chart
+Highcharts.chart('piechart', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Diabetes pie chart',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Age, Cholesterol levels',
+        align: 'left'
+    },
+    plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%']
+        }
+    },
+    tooltip: {
+        valueSuffix: '%'
+    },
+    series: [{
+        name: 'Age',
+        data: browserData,
+        size: '60%',
+        dataLabels: {
+            formatter: function () {
+                return this.y > 5 ? this.point.name : null;
+            },
+            color: 'black',
+            distance: -30
+        }
+    }, {
+        name: 'cholesterol',
+        data: versionsData,
+        size: '80%',
+        innerSize: '60%',
+        dataLabels: {
+            formatter: function () {
+                // display only if larger than 1
+                return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                    this.y + '%' : null;
+            }
+        },
+        id: 'versions'
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 400
+            },
+            chartOptions: {
+                series: [{
+                }, {
+                    id: 'versions',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            }
+        }]
+    }
+});
+  </script>
+  <script>
+  var colors = Highcharts.getOptions().colors,
+    categories = [
+        '70+ yrs',
+        '51-70 yrs',
+        '31-50 yrs',
+        '16-30 yrs'
+    ],
+    data = [
+        {
+            y: 13.65,
+            color: 'tomato',
+            drilldown: {
+                name: '70+ yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    1.96,
+                    3.846,
+                    7.315
+                    
+                ]
+            }
+        },
+        {
+            y: 32.95,
+            color: 'orange',
+            drilldown: {
+                name: '51-70 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    6.03,
+                    14.85,
+                    12.06
+                ]
+            }
+        },
+        {
+            y: 35.06,
+            color: 'MediumSeaGreen',
+            drilldown: {
+                name: '31-50 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    5.88,
+                    16.81,
+                    12.36
+                ]
+            }
+        },
+        {
+            y: 18.32,
+            color: 'lightblue',
+            drilldown: {
+                name: '16-30 yrs',
+                categories: [
+                    'high',
+                    'borderline',
+                    'low'
+                ],
+                data: [
+                    1.206,
+                    7.843,
+                    9.276
+                ]
+            }
+        }
+    ],
+    AgeData = [],
+    cholesterolData = [],
+    i,
+    j,
+    dataLen = data.length,
+    drillDataLen,
+    brightness;
+
+
+// Build the data arrays
+for (i = 0; i < dataLen; i += 1) {
+
+    // add browser data
+    AgeData.push({
+        name: categories[i],
+        y: data[i].y,
+        color: data[i].color
+    });
+
+    // add version data
+    drillDataLen = data[i].drilldown.data.length;
+    for (j = 0; j < drillDataLen; j += 1) {
+        brightness = 0.2 - (j / drillDataLen) / 5;
+        cholesterolData.push({
+            name: data[i].drilldown.categories[j],
+            y: data[i].drilldown.data[j],
+            color: Highcharts.color(data[i].color).brighten(brightness).get()
+        });
+    }
+    
+}
+
+// Create the chart
+Highcharts.chart('pre_piechart', {
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: 'Prediabetes pie chart',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Age, Cholesterol levels',
+        align: 'left'
+    },
+    plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%']
+        }
+    },
+    tooltip: {
+        valueSuffix: '%'
+    },
+    series: [{
+        name: 'Age',
+        data: AgeData,
+        size: '60%',
+        dataLabels: {
+            formatter: function () {
+                return this.y > 5 ? this.point.name : null;
+            },
+            color: 'black',
+            distance: -30
+        }
+    }, {
+        name: 'cholesterol',
+        data: cholesterolData,
+        size: '80%',
+        innerSize: '60%',
+        dataLabels: {
+            formatter: function () {
+                // display only if larger than 1
+                return this.y > 1 ? '<b>' + this.point.name + ':</b> ' +
+                    this.y + '%' : null;
+            }
+        },
+        id: 'versions'
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 400
+            },
+            chartOptions: {
+                series: [{
+                }, {
+                    id: 'versions',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            }
+        }]
+    }
+});
+  </script>
+
+  <script>
+    var colors = Highcharts.getOptions().colors.map(color =>
+    Highcharts.color(color).setOpacity(0.5).get()
+);
+
+Highcharts.chart('scatter_plots', {
+    chart: {
+        type: 'scatter'
+    },
+
+    colors,
+
+    title: {
+        text: 'HbA1C Scatter chart'
+    },
+
+    xAxis: {
+        categories: ['No Diabetes', 'Pre Diabetes', 'Diabetes']
+    },
+
+    yAxis: {
+        title: {
+            text: 'HbA1C levels'
+        }
+    },
+
+    plotOptions: {
+        scatter: {
+            showInLegend: false,
+            jitter: {
+                x: 0.24,
+                y: 0
+            },
+            marker: {
+                radius: 2,
+                symbol: 'circle'
+            },
+            tooltip: {
+                pointFormat: 'HbA1C levels: {point.y:.2f}'
+            }
+        }
+    },
+
+    series: [{
+        name: 'No Diabetes',
+        data: {{df_non_dia|safe}}
+    }, {
+        name: 'Pre Diabetes',
+        data: {{df_predia|safe}}
+    }, {
+        name: 'Diabetes',
+        data: {{df_dia|safe}}
+    }]
+});
+  </script>
+
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Questionnaire</title>
+    <style type="text/css">
+      body {
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv9H04WzXlOcWw2JiY47keRR0c2GB2OE6IQDoC_ERGI6h9JFph0Os77tPcirAWucvpf_a8Y68_EWQ&usqp=CAU&ec=48600113");
+        background-size: contain;
+        background-repeat: repeat;
+        background-position: center;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-around;
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+      }
+
+      .form-column {
+        flex: 1;
+        padding: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        color: darkslategrey;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select,
+      textarea {
+        width: 90%;
+        padding: 10px;
+        border-radius: 100px;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+
+      fieldset {
+        margin-bottom: 20px;
+        border: none;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Diabetes Questionnaire</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="form-column">
+          <form action="#" method="POST">
+            {% csrf_token %}
+            <fieldset>
+              <legend style="font-weight: bold;">Personal Information</legend><br>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required><br>
+              <label for="age">Age:</label>
+              <input type="text" id="Age" name="Age" required><br>
+
+              <label for="gender">Gender:</label>
+              <select id="Gender" name="Gender" required>
+                  <option value="">Please select...</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+              </select>
+
+              <label for="Height"> Height (cm):</label>
+              <input type="text" id="Height" name="Height" required><br>
+
+              <label for="BMI">Weigth (lbs):</label>
+              <input type="text" id="Weight" name="Weight" required><br>
+
+              <label for="BMI">BMI:</label>
+              <input type="text" id="BMI" name="BMI" required><br>
+
+              <label for="Ethinicity">Ethinicity</label>
+              <select id="Ethinicity" name="Ethinicity" required>
+                  <option value="">Please select...</option>
+                  <option value="Non-Hispanic White">Non-Hispanic White</option>
+                  <option value="Non-Hispanic Black">Non-Hispanic Black</option>
+                  <option value="Mexican American">Mexican American</option>
+                  <option value="Other Hispanic">Other Hispanic</option>
+                  <option value="Other Race">Other Race</option>
+              </select>
+              
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required><br>
+
+              
+              <label for="phone">Phone Number:</label>
+              <input type="tel" id="phone" name="phone" required><br>
+            </fieldset>
+
+            <fieldset>
+              <legend style="font-weight: bold;">Medical History</legend><br>
+              
+              <div>
+                           <label for="diagnosis">Have you been diagnosed with diabetes?</label>
+                           <input type="radio" id="diagnosis_yes" name="diagnosis" value="yes" required>
+                           <label for="diagnosis_yes">Yes</label>
+                           <input type="radio" id="diagnosis_no" name="diagnosis" value="no">
+                           <label for="diagnosis_no">No</label> 
+                       </div><br>
+
+
+                               <label for="type">What type of diabetes do you have?</label>
+                               <input type="radio" id="type1" name="type" value="type1">
+                               <label for="type1">Type 1</label>
+                               <input type="radio" id="type2" name="type" value="type2">
+                               <label for="type2">Type 2</label>
+                               <input type="radio" id="other_type" name="type" value="other">
+                               <label for="other_type">Other</label> <br>
+
+
+                               <label for="Family history">Does anyone in your family has Diabetes?</label>
+                               <input type="radio" id="Family history_yes" name="Family history" value="yes" required>
+                               <label for="Family history_yes">Yes</label>
+                               <input type="radio" id="Family history_no" name="Family history" value="no">
+                               <label for="Family history_no">No</label> <br>
+
+                               <label for="PCOD">Do you have PCOD?</label>
+                               <input type="radio" id="PCOD_yes" name="PCOD" value="yes" required>
+                               <label for="PCOD_yes">Yes</label>
+                               <input type="radio" id="PCOD_no" name="PCOD" value="no">
+                               <label for="PCOD_no">No</label> <br>
+
+                               <label for="Pregnancy">Are you currently pregnant?</label>
+                               <input type="radio" id="Pregnancy_yes" name="Pregnancy" value="yes" required>
+                               <label for="Pregnancy_yes">Yes</label>
+                               <input type="radio" id="Pregnancy_no" name="Pregnancy" value="no">
+                               <label for="Pregnancy_no">No</label> <br>
+
+</fieldset><br>
+
+           <fieldset>
+               <legend style="font-weight: bold;">Blood Reports</legend><br>
+            
+               <label for="Cholesterol levels"> Cholesterol levels </label>
+               <textarea id="Cholesterol levels" name="Cholesterol levels"></textarea> <br>
+
+               <label for="Systolic Blood pressure"> Systolic Blood pressure </label>
+               <textarea id="Systolic Blood pressure" name="Systolic Blood pressure"></textarea> <br>
+
+
+               <label for="Diastolic Blood pressure"> Diastolic Blood pressure </label>
+               <textarea id="Diastolic Blood pressure" name="Diastolic Blood pressure"></textarea> <br>
+
+               <label for="TAG"> Triglyceride </label>
+               <textarea id="Triglyceride" name="Triglyceride"></textarea><br />
+
+
+           </fieldset><br>
+
+                      <fieldset>
+                          <legend style="font-weight: bold;">Lifestyle</legend> <br>
+                          <label for="excercise">Do you engage in regular exercise?</label>
+                          <select id="excercise" name="excercise" required>
+                              <option value="">Please select...</option>
+                              <option value="Inactive">Inactive</option>
+                              <option value="Minimally active">Minimally active (daily activities like brisk walking)</option>
+                              <option value="Moderately active">Moderately active (30 min daily light excercise)</option>
+                              <option value="Highly active">Highly active (60 min daily vigorous excercise)</option>
+                          </select>
+
+                          <label for="alcohol">What is your alcohol consumption status?</label>
+                          <select id="alcohol" name="alcohol" required>
+                              <option value="">Please select...</option>
+                              <option value="none"> None </option>
+                              <option value="Rarely"> Rarely </option>
+                              <option value="Occasionally"> Occasionally </option>
+                              <option value="Regularly"> Regularly </option>
+                          </select>
+
+                          <label for="smoking">What is your smoking status?</label>
+                          <select id="smoking" name="smoking" required>
+                              <option value="">Please select...</option>
+                              <option value="none"> None </option>
+                              <option value="Rarely"> Rarely </option>
+                              <option value="Occasionally"> Occasionally </option>
+                              <option value="Regularly"> Regularly </option>
+                          </select>
+
+                          <label for="sleep">How many hours you sleep?</label>
+                          <select id="sleep" name="sleep" required>
+                              <option value="">Please select...</option>
+                              <option value="5"> less than 5 hours </option>
+                              <option value="5-8"> 5-8 hours </option>
+                              <option value="8"> more than 8 hours </option>
+                          </select>
+                      </fieldset><br>
+                                  <button type="submit"> Submit </button>
+
+</html>

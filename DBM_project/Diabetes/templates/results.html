@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .heading-image {
+            width: 70%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <img class="heading-image" src="https://static.vecteezy.com/system/resources/previews/003/533/747/original/diabetes-testing-with-blood-glucose-meter-exam-results-tubes-syringe-to-medical-healthcare-and-treatment-for-poster-background-illustration-vector.jpg">
+    <h3>
+        <p>You could be in stage {{result}} with an accuracy of 65%. You can find information on diabetes and how to manage the condition at <a href="{% url 'information' %}">Diabetes Information</a>.</p>
+    </h3>
+</body>
+</html>
+
+
+
+
+
