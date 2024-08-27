@@ -1,4 +1,4 @@
-# Django-DiabetesPrediction
+# DATA DRIVEN APPROACH FOR DIABETES PREDICTION
 
 ### Django
 Django is a high-level open-source Python web framework that allows developers to create complex web applications quickly and efficiently. It follows the Model-View-Controller (MVC) architectural pattern and provides a robust set of tools and libraries for tasks such as handling HTTP requests and responses, database modeling, user authentication, and form handling. This project utilizes the MVC framework, where the graphical user interface is created using HTML and CSS.
